@@ -2,6 +2,7 @@ package com.atguigu.study.controller;
 
 import jakarta.annotation.Resource;
 import org.springframework.ai.chat.model.ChatModel;
+import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,9 +20,13 @@ public class OllamaController
     private ChatModel chatModel;*/
 
     //方式2
+//    @Resource
+//    @Qualifier("ollamaChatModel")
+//    private ChatModel chatModel;
+
+    //方式3
     @Resource
-    @Qualifier("ollamaChatModel")
-    private ChatModel chatModel;
+    private OllamaChatModel chatModel;
 
 
     /**auther zzyybs@126.com
