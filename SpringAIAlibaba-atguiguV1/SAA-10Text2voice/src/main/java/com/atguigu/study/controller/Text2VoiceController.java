@@ -38,12 +38,41 @@ public class Text2VoiceController
     @GetMapping("/t2v/voice")
     public String voice(@RequestParam(name = "msg",defaultValue = "温馨提醒，支付宝到账100元请注意查收") String msg)
     {
-        String filePath = "d:\\" + UUID.randomUUID() + ".mp3";
+        String filePath = "/Users/action/Downloads/" + UUID.randomUUID() + ".mp3";
 
         //1 语音参数设置
         DashScopeSpeechSynthesisOptions options = DashScopeSpeechSynthesisOptions.builder()
                 .model(BAILIAN_VOICE_MODEL)
                 .voice(BAILIAN_VOICE_TIMBER)
+                .build();
+
+        //2 调用大模型语音生成对象
+        SpeechSynthesisResponse response = speechSynthesisModel.call(new SpeechSynthesisPrompt(msg, options));
+
+        //3 字节流语音转换
+        ByteBuffer byteBuffer = response.getResult().getOutput().getAudio();
+
+        //4 文件生成
+        try (FileOutputStream fileOutputStream = new FileOutputStream(filePath))
+        {
+            fileOutputStream.write(byteBuffer.array());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        //5 生成路径OK
+        return filePath;
+    }
+
+
+    @GetMapping("/test/voice")
+    public String testVoice(@RequestParam(name = "msg",defaultValue = "茂领哥哥，你好帅啊，我好喜欢你啊") String msg)
+    {
+        String filePath = "/Users/action/Downloads/" + UUID.randomUUID() + ".mp3";
+
+        //1 语音参数设置
+        DashScopeSpeechSynthesisOptions options = DashScopeSpeechSynthesisOptions.builder()
+                .model(BAILIAN_VOICE_MODEL)
+                .voice("longanya")
                 .build();
 
         //2 调用大模型语音生成对象
