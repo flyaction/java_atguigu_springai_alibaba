@@ -8,8 +8,7 @@ import java.time.format.DateTimeFormatter;
  * @create: 2025/11/7 10:28
  **/
 public class TimeUtils {
-    private static final DateTimeFormatter formatter =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
 
     public static String getTimestamp() {
         return LocalDateTime.now().format(formatter);
