@@ -64,6 +64,12 @@ public class Text2VoiceController
     }
 
 
+
+    /**
+     * 测试甜妹声音
+     * @param msg
+     * @return
+     */
     @GetMapping("/test/voice")
     public String testVoice(@RequestParam(name = "msg",defaultValue = "茂领哥哥，你好帅啊，我好喜欢你啊") String msg)
     {
