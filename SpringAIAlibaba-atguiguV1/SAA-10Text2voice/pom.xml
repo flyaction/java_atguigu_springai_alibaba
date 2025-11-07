@@ -16,6 +16,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dashscope-sdk-java</artifactId>
+            <!-- 请将 'the-latest-version' 替换为最新版本号：https://mvnrepository.com/artifact/com.alibaba/dashscope-sdk-java -->
+            <version>2.22.0</version>
+        </dependency>
+
         <!--spring-ai-alibaba dashscope-->
         <dependency>
             <groupId>com.alibaba.cloud.ai</groupId>
