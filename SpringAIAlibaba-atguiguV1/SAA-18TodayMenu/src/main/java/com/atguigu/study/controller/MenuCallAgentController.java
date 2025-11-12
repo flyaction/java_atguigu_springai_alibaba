@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 
 /**
  * @auther zzyybs@126.com
@@ -37,5 +38,15 @@ public class MenuCallAgentController
         Prompt prompt = new Prompt(msg, options);
 
         return dashScopeAgent.call(prompt).getResult().getOutput().getText();
+    }
+
+    @GetMapping(value = "/eatAgent2")
+    public Flux<String> eatAgent2(@RequestParam(name = "msg",defaultValue = "今天吃什么") String msg)
+    {
+        DashScopeAgentOptions options = DashScopeAgentOptions.builder().withAppId(appId).build();
+
+        Prompt prompt = new Prompt(msg, options);
+
+        return dashScopeAgent.stream(prompt).map(response -> response.getResults().get(0).getOutput().getText());
     }
 }
