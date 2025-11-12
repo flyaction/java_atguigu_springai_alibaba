@@ -18,7 +18,7 @@ public class DashScopeConfig
     public DashScopeApi dashScopeApi() {
         return DashScopeApi.builder()
                 .apiKey(apiKey)
-                .workSpaceId("llm-3as714s6flm80yc1")
+                .workSpaceId("llm-3as714s6flm80yc1")//业务空间id,需要修改成自己的
                 .build();
     }
 
