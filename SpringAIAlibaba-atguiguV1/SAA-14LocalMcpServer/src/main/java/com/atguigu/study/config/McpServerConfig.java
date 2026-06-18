@@ -1,5 +1,6 @@
 package com.atguigu.study.config;
 
+import com.atguigu.study.service.DataService;
 import com.atguigu.study.service.WeatherService;
 import org.springframework.ai.tool.ToolCallbackProvider;
 import org.springframework.ai.tool.method.MethodToolCallbackProvider;
@@ -21,10 +22,10 @@ public class McpServerConfig
      * @return
      */
     @Bean
-    public ToolCallbackProvider weatherTools(WeatherService weatherService)
+    public ToolCallbackProvider weatherTools(WeatherService weatherService, DataService dataService)
     {
         return MethodToolCallbackProvider.builder()
-                .toolObjects(weatherService)
+                .toolObjects(weatherService,dataService)
                 .build();
     }
 }
